@@ -8,8 +8,6 @@ import { Loader2 } from "lucide-react";
 const Register = () => {
   const [formData, setFormData] = useState({
     fullName: "",
-    storeName: "",
-    botPhoneNumber: "",
   });
   const [loading, setLoading] = useState(false);
   const location = useLocation();
@@ -25,10 +23,8 @@ const Register = () => {
       const data = new FormData();
       data.append("full_name", formData.fullName);
       data.append("phone_number", phoneNumber);
-      data.append("store_name", formData.storeName);
-      data.append("bot_phone_number", formData.botPhoneNumber);
 
-      const response = await fetch("https://backend.autojualan.com/api/v1/auth/quick-registration/", {
+      const response = await fetch("https://backend.autojualan.com/api/v1/auth/register/", {
         method: "POST",
         body: data,
       });
@@ -67,18 +63,6 @@ const Register = () => {
               placeholder="Full Name"
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-              required
-            />
-            <Input
-              placeholder="Store Name"
-              value={formData.storeName}
-              onChange={(e) => setFormData({ ...formData, storeName: e.target.value })}
-              required
-            />
-            <Input
-              placeholder="Bot WhatsApp Number"
-              value={formData.botPhoneNumber}
-              onChange={(e) => setFormData({ ...formData, botPhoneNumber: e.target.value })}
               required
             />
           </div>
